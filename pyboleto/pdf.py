@@ -798,8 +798,8 @@ class BoletoPDF(object):
         return x, d[1]
 
     def _af_setup_pdf(self):
-        self.pdf_canvas.setAuthor('Aceita Fácil Pagamentos')
-        self.pdf_canvas.setTitle('Aceita Facil Pagamentos')
+        self.pdf_canvas.setAuthor('CONTAVIVA')
+        self.pdf_canvas.setTitle('CONTAVIVA')
         self.pdf_canvas.setSubject('Boleto Bancário')
         # logo_image_path =
 
@@ -938,8 +938,7 @@ class BoletoPDF(object):
         elif len(boleto_dados.sacado) == 3:
             self.pdf_canvas.drawString(1.1 * cm, 27.15 * cm,
                                        boleto_dados.sacado[0] + ' - ' +
-                                       boleto_dados.sacado[1] + ' - ' +
-                                       boleto_dados.sacado[2])
+                                       boleto_dados.sacado[1])
         self._af_draw_box_sm()
 
         self._af_br()
@@ -1075,13 +1074,12 @@ class BoletoPDF(object):
                                    boleto_dados.vendedor_documento)
 
         self.pdf_canvas.drawString(
-            1.1 * cm, 26.6*cm, 'é o prestador dos serviços cujo pagamento será efetuado por este boleto, gerado por ')
-        self.pdf_canvas.drawString(1.1 * cm, 26.2*cm, boleto_dados.razao_social_emissor.upper())
+            1.1 * cm, 26.6*cm, 'prestador dos serviços cujo pagamento será efetuado por este boleto, gerado por ' + boleto_dados.razao_social_emissor.upper())
+        # self.pdf_canvas.drawString(1.1 * cm, 26.2*cm, boleto_dados.razao_social_emissor.upper())
+
         self.pdf_canvas.drawString(1.1 * cm, 25.7 * cm, boleto_dados.instrucoes[0])
         self.pdf_canvas.drawString(1.1 * cm, 25.3*cm, boleto_dados.instrucoes[1])
-        self.pdf_canvas.drawString(
-            1.1 * cm, 24.75*cm,
-            'Não receber após ' + str(boleto_dados.max_dias_apos_vencimento) + ' dias do vencimento')
+        # self.pdf_canvas.drawString(1.1 * cm, 24.75*cm, 'Não receber após ' + str(boleto_dados.max_dias_apos_vencimento) + ' dias do vencimento')
         self.pdf_canvas.drawString(1.1 * cm, 24.35*cm, 'Não aceitar pagamento com cheque')
         self.pdf_canvas.setFont("Helvetica", 6)
         self.pdf_canvas.drawString(15.1 * cm, 27.5*cm, "(-) Descontos / Abatimentos")
@@ -1113,10 +1111,9 @@ class BoletoPDF(object):
         if len(boleto_dados.sacado) == 2:
             self.pdf_canvas.drawString(1.1 * cm, 28.55 * cm, boleto_dados.sacado[0] + ' - ' + boleto_dados.sacado[1])
         elif len(boleto_dados.sacado) == 3:
-            self.pdf_canvas.drawString(1.1 * cm, 28.55 * cm,
-                                       boleto_dados.sacado[0] + ' - ' +
-                                       boleto_dados.sacado[1] + ' - ' +
-                                       boleto_dados.sacado[2])
+            self.pdf_canvas.drawString(1.1 * cm, 28.55 * cm, boleto_dados.sacado[0])
+            self.pdf_canvas.drawString(1.1 * cm, 28.15 * cm, boleto_dados.sacado[1])
+            self.pdf_canvas.drawString(1.1 * cm, 27.75 * cm, boleto_dados.sacado[2])
 
         self._af_draw_box_sm(height=3)
         self.pdf_canvas.setFont("Helvetica-Bold", 9)
